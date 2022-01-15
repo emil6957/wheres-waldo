@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./Game.css";
 
 export default function Game( {level } ) {
-    const [currentCharater, setCurrentCharater] = useState("");
     const [displayDropdown, setDisplayDropdown] = useState(false);
     const [positionX, setPositionX] = useState(0);
     const [positionY, setPositionY] = useState(0);
@@ -14,24 +13,17 @@ export default function Game( {level } ) {
         console.log(e);
     }
 
-    function checkForFind(charater) {
-        if(charater === currentCharater) {
-            console.log("Win");
-        }
-    }
-
     const styles = {
         display: displayDropdown ? "block" : "none",
         left: positionX,
         top: positionY,
     }
 
-    const dropDownOptions = level.charaters.map(charater => <p onClick={() => checkForFind(charater)} className="dropdown__item">{charater}</p>)
+    const dropDownOptions = level.charaters.map(charater => <p className="dropdown__item">{charater}</p>)
 
     return (
         <div onClick={(e) => handleClick(e)} className="game">
-            <div onClick={() => setCurrentCharater("waldo")} className="box"></div>
-            <img onClick={() => setCurrentCharater("")} className="level__img" src={level.map} alt="Wheres waldo level" />
+            <img className="level__img" src={level.map} alt="Wheres waldo level" />
             <div className="game__dropdown" style={styles}>
                 {dropDownOptions}
             </div>
