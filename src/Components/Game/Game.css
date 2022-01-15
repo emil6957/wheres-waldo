@@ -1,0 +1,28 @@
+.level__img {
+    height: calc(100vh - 3rem);
+    width: 100vw;
+}
+
+.box {
+    border: 2px solid black;
+    height: 70px;
+    width: 50px;
+    position: absolute;
+    top: 39%;
+    left: 48.5%;
+}
+
+.game__dropdown {
+    position: absolute;
+    background-color: white;
+}
+
+.dropdown__item {
+    margin: 0;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+
+.dropdown__item:hover {
+    background: rgba(0, 0, 0, .3);
+}
