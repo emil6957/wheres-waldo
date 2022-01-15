@@ -9,8 +9,9 @@ export default function Game( {level } ) {
 
     function handleClick(e) {
         setDisplayDropdown(prevBool => !prevBool);
-        setPositionX(e.clientX + 1); // Adding 1 to each axis so that it doesnt instantly hover over the first option in dropdown
-        setPositionY(e.clientY + 1);
+        setPositionX(`${((e.clientX / window.innerWidth) * 100) + 0.1}%`); // Adding 0.1 to each axis so that it doesnt instantly hover over the first option in dropdown
+        setPositionY(`${((e.clientY / window.innerHeight) * 100) + 0.1}%`);
+        console.log(e);
     }
 
     function checkForFind(charater) {
