@@ -16,7 +16,7 @@ initializeApp(firebaseConfig);
 
 const level = {
   map: level1,
-  charaters: ["waldo"],
+  characters: ["waldo", "wenda"],
 }
 
 function App() {

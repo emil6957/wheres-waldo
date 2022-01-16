@@ -15,6 +15,7 @@
 .game__dropdown {
     position: absolute;
     background-color: white;
+    z-index: 2;
 }
 
 .dropdown__item {
@@ -25,4 +26,20 @@
 
 .dropdown__item:hover {
     background: rgba(0, 0, 0, .3);
+}
+
+.game__targeting-box {
+    position: absolute;
+    height: 6%;
+    width: 2%;
+    border: solid black 2px;
+}
+
+.test-box {
+    height: 10px;
+    width: 10px;
+    background: red;
+    position: absolute;
+    top: 42%;
+    left: 49.5%;
 }
