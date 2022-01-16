@@ -1,11 +1,67 @@
 header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 3rem;
     background: lightcoral;
-    padding: .5rem 1rem;
+    padding: .5rem 2rem;
 }
 
 .header__title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title__text {
     margin: 0;
+}
+
+.title__image {
+    height: 50px;
+    width: 50px;
+}
+
+.dropdown__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+.characters-left {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.characters {
+    position: absolute;
+    top: 57px;
+    width: 400px;
+    background-color: white;
+    z-index: 2;
+}
+
+.character {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+}
+
+.character__image {
+    height: 75px;
+}
+
+.character__name {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
 }

@@ -1,5 +1,7 @@
-import level1 from "./Images/2687205.png";
+import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app"
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import level1 from "./Images/2687205.png";
 import Game from "./Components/Game/Game";
 import Header from "./Components/Header/Header";
 
@@ -20,10 +22,30 @@ const level = {
 }
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
+  const [data, setData] = useState([]);
+    function getData(level) {
+        const db = getFirestore();
+        const levelRef = collection(db, level);
+        getDocs(levelRef)
+            .then((snapshot) => {
+                let data = []
+                snapshot.docs.forEach(doc => {
+                    data.push({ ...doc.data(), id: doc.id })
+                })
+                setData(data);
+                setLoaded(true);
+            })
+    }
+
+    useEffect(() => {
+      getData("level1");
+    }, [])
+
   return (
     <div className="App">
-      <Header />
-      <Game level={level} />
+      {loaded && <Header data={data} />}
+      {loaded && <Game data={data} getData={getData} level={level} />}
     </div>
   );
 }
