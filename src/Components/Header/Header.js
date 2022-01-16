@@ -9,7 +9,7 @@ export default function Header({ data }) {
 
     const characters = data[0].characters.map(character => {
         let img;
-        switch(character) {
+        switch(character.name) {
             case "waldo": 
                 img = waldo;
                 break;
@@ -23,8 +23,8 @@ export default function Header({ data }) {
 
         return (
             <div className="character">
-                <img className="character__image" src={img} alt={character} />
-                <p className="character__name">{character}</p>
+                <img className="character__image" src={img} alt={character.name} />
+                <p className="character__name">{character.name}</p>
             </div>
         )
     })

@@ -17,9 +17,9 @@ export default function Game( { data, level } ) {
 
     function checkIfFound(char) {
         data[0].characters.forEach(character => {
-            if(char === character) {
-                const characterPositionX = parseFloat(data[0].positions[char].positionX);
-                const characterPositionY = parseFloat(data[0].positions[char].positionY);
+            if(char === character.name) {
+                const characterPositionX = parseFloat(character.positionX);
+                const characterPositionY = parseFloat(character.positionY);
                 const currentPositionX = parseFloat(positionX);
                 const currentPositionY = parseFloat(positionY);
                 if(characterPositionX - 1.2 <= currentPositionX && characterPositionX + 1.2 >= currentPositionX && characterPositionY - 3.5 <= currentPositionY && characterPositionY + 3.5 >= currentPositionY) {
