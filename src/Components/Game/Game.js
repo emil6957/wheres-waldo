@@ -1,5 +1,4 @@
-import { collection, getDocs, getFirestore } from "firebase/firestore"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Game.css";
 
 export default function Game( { setCharacterFound, data, level } ) {
