@@ -23,7 +23,7 @@ const level = {
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
     function getData(level) {
         const db = getFirestore();
         const levelRef = collection(db, level);
@@ -33,19 +33,26 @@ function App() {
                 snapshot.docs.forEach(doc => {
                     data.push({ ...doc.data(), id: doc.id })
                 })
-                setData(data);
-                setLoaded(true);
-            })
-    }
+          setData(data);
+          setLoaded(true);
+        })
+  }
 
-    useEffect(() => {
-      getData("level1");
-    }, [])
+  useEffect(() => {
+    getData("level1");
+  }, [])
+
+  function setCharacterFound(char) {
+    setData(prevData => prevData.map(data => {
+      const newCharacters = data.characters.map(character => character.name === char ?  {...character, beenFound: true} : character)
+      return { ...data, characters: newCharacters }
+    })); 
+  }
 
   return (
     <div className="App">
       {loaded && <Header data={data} />}
-      {loaded && <Game data={data} getData={getData} level={level} />}
+      {loaded && <Game setCharacterFound={setCharacterFound} data={data} getData={getData} level={level} />}
     </div>
   );
 }

@@ -28,6 +28,16 @@ export default function Header({ data }) {
             </div>
         )
     })
+
+    function getAmmountOfCharactersLeft() {
+        let count = 0;
+        data[0].characters.forEach(character => {
+            if(character.beenFound === false) {
+                count++;
+            }
+        })
+        return count;
+    }
        
     return (
         <header>
@@ -37,7 +47,7 @@ export default function Header({ data }) {
             </div>
             <div className="header__dropdown">
                 <div onClick={() => setDisplayCharacters(prevBool => !prevBool)} className="dropdown__container">
-                    <p className="characters-left">{data[0].characters.length}</p> 
+                    <p className="characters-left">{getAmmountOfCharactersLeft()}</p> 
                     {displayCharacters && 
                         <div className="characters">
                             {characters}

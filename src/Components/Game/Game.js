@@ -2,7 +2,7 @@ import { collection, getDocs, getFirestore } from "firebase/firestore"
 import { useEffect, useState } from "react";
 import "./Game.css";
 
-export default function Game( { data, level } ) {
+export default function Game( { setCharacterFound, data, level } ) {
     const [displayTargetingBox, setDisplayTargetingBox] = useState(false);
     const [displayDropdown, setDisplayDropdown] = useState(false);
     const [positionX, setPositionX] = useState(0);
@@ -23,7 +23,7 @@ export default function Game( { data, level } ) {
                 const currentPositionX = parseFloat(positionX);
                 const currentPositionY = parseFloat(positionY);
                 if(characterPositionX - 1.2 <= currentPositionX && characterPositionX + 1.2 >= currentPositionX && characterPositionY - 3.5 <= currentPositionY && characterPositionY + 3.5 >= currentPositionY) {
-                    console.log("Char found");
+                    setCharacterFound(character.name);
                 }
             }
         })
