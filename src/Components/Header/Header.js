@@ -2,11 +2,12 @@ import "./Header.css";
 import waldoHeader from "../../Images/waldo.png";
 import waldo from "../../Images/waldo.jpg";
 import wenda from "../../Images/wenda.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
 export default function Header({ data, gameWon }) {
     const [displayCharacters, setDisplayCharacters] = useState(false);
+    const [charactersLeft, setCharactersLeft] = useState();
 
     const characters = data[0].characters.map(character => {
         let img;
@@ -38,7 +39,7 @@ export default function Header({ data, gameWon }) {
             }
         })
         checkWin(count);
-        return count;
+        setCharactersLeft(count);
     }
 
     function checkWin(count) {
@@ -47,6 +48,11 @@ export default function Header({ data, gameWon }) {
             gameWon();
         }
     }
+
+    useEffect(() => {
+        getAmmountOfCharactersLeft();
+    })
+
        
     return (
         <header>
@@ -56,7 +62,7 @@ export default function Header({ data, gameWon }) {
             </div>
             <div className="header__dropdown">
                 <div onClick={() => setDisplayCharacters(prevBool => !prevBool)} className="dropdown__container">
-                    <p className="characters-left">{getAmmountOfCharactersLeft()}</p> 
+                    <p className="characters-left">{charactersLeft}</p> 
                     {displayCharacters && 
                         <div className="characters">
                             {characters}

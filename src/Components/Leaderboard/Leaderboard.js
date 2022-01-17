@@ -1,4 +1,5 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";
 
@@ -27,7 +28,7 @@ export default function Leaderboard() {
     
     const leaderboardElements = loaded ? leaderboard[0].scores.map(score => {
         return (
-            <div>
+            <div key={nanoid()}>
                 <p>{score.name}</p>
                 <p>{score.time}</p>
             </div>
