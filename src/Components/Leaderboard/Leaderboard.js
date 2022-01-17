@@ -26,11 +26,11 @@ export default function Leaderboard() {
         getLeaderboard();
     }, [])
     
-    const leaderboardElements = loaded ? leaderboard[0].scores.map(score => {
+    const leaderboardElements = loaded ? leaderboard.map(player => {
         return (
             <div key={nanoid()}>
-                <p>{score.name}</p>
-                <p>{score.time}</p>
+                <p>{player.name}</p>
+                <p>{player.score}</p>
             </div>
         )
     }) : <p></p>

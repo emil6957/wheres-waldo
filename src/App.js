@@ -32,7 +32,7 @@ function App() {
         const levelsRef = collection(db, "levels");
         getDocs(levelsRef)
           .then(snapshot => {
-            const data = snapshot.docs[level - 1].data();
+            const data = { ...snapshot.docs[level - 1].data(), id: snapshot.docs[level-1].id }
             setData(data);
             setLoaded(true);
         })
