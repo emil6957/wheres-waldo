@@ -4,7 +4,7 @@ import waldo from "../../Images/waldo.jpg";
 import wenda from "../../Images/wenda.jpg";
 import { useState } from "react";
 
-export default function Header({ data }) {
+export default function Header({ data, gameWon }) {
     const [displayCharacters, setDisplayCharacters] = useState(false);
 
     const characters = data[0].characters.map(character => {
@@ -36,7 +36,15 @@ export default function Header({ data }) {
                 count++;
             }
         })
+        checkWin(count);
         return count;
+    }
+
+    function checkWin(count) {
+        if(count === 0) {
+            console.log("WIN");
+            gameWon();
+        }
     }
        
     return (
