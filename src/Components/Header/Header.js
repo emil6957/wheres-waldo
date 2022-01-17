@@ -9,7 +9,7 @@ export default function Header({ data, gameWon }) {
     const [displayCharacters, setDisplayCharacters] = useState(false);
     const [charactersLeft, setCharactersLeft] = useState();
 
-    const characters = data[0].characters.map(character => {
+    const characters = data.characters.map(character => {
         let img;
         switch(character.name) {
             case "waldo": 
@@ -33,7 +33,7 @@ export default function Header({ data, gameWon }) {
 
     function getAmmountOfCharactersLeft() {
         let count = 0;
-        data[0].characters.forEach(character => {
+        data.characters.forEach(character => {
             if(character.beenFound === false) {
                 count++;
             }

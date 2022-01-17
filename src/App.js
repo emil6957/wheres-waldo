@@ -26,29 +26,27 @@ function App() {
   const [hasWon, setHasWon] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [data, setData] = useState();
+
     function getData(level) {
         const db = getFirestore();
-        const levelRef = collection(db, level);
-        getDocs(levelRef)
-            .then(snapshot => {
-                let data = []
-                snapshot.docs.forEach(doc => {
-                    data.push({ ...doc.data(), id: doc.id })
-                })
-          setData(data);
-          setLoaded(true);
+        const levelsRef = collection(db, "levels");
+        getDocs(levelsRef)
+          .then(snapshot => {
+            const data = snapshot.docs[level - 1].data();
+            setData(data);
+            setLoaded(true);
         })
   }
 
   useEffect(() => {
-    getData("level1");
+    getData(1);
   }, [])
 
   function setCharacterFound(char) {
-    setData(prevData => prevData.map(data => {
-      const newCharacters = data.characters.map(character => character.name === char ?  {...character, beenFound: true} : character)
-      return { ...data, characters: newCharacters }
-    })); 
+    setData(prevData => {
+      const newCharacters = prevData.characters.map(character => character.name === char ? { ...character, beenFound: true } : character)
+      return { ...prevData, characters: newCharacters }
+    }) 
   }
 
   function gameWon() {

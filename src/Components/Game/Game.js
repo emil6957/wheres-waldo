@@ -16,7 +16,7 @@ export default function Game( { setCharacterFound, data, level } ) {
     }
 
     function checkIfFound(char) {
-        data[0].characters.forEach(character => {
+        data.characters.forEach(character => {
             if(char === character.name) {
                 const characterPositionX = parseFloat(character.positionX);
                 const characterPositionY = parseFloat(character.positionY);
