@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 import "./Game.css";
 
@@ -39,7 +40,7 @@ export default function Game( { setCharacterFound, data, level } ) {
         transform: "translate(-50%,-50%)",
     }
 
-    const dropDownOptions = level.characters.map(character => <p onClick={() => checkIfFound(character)} className="dropdown__item">{character}</p>)
+    const dropDownOptions = level.characters.map(character => <p key={nanoid()} onClick={() => checkIfFound(character)} className="dropdown__item">{character}</p>)
 
     return (
         <div onClick={(e) => handleClick(e)} className="game">

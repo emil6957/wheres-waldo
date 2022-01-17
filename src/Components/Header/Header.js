@@ -3,6 +3,7 @@ import waldoHeader from "../../Images/waldo.png";
 import waldo from "../../Images/waldo.jpg";
 import wenda from "../../Images/wenda.jpg";
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
 export default function Header({ data, gameWon }) {
     const [displayCharacters, setDisplayCharacters] = useState(false);
@@ -22,7 +23,7 @@ export default function Header({ data, gameWon }) {
         }
 
         return (
-            <div className="character">
+            <div key={nanoid()} className="character">
                 <img className="character__image" src={img} alt={character.name} />
                 <p className="character__name">{character.name}</p>
             </div>
